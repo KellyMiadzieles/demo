@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Repository
@@ -27,5 +28,21 @@ public class CreateAdvertisementRepository {
         paramMap.put("dbEmail", advertisementDTO.getEmail());
         jdbcTemplate.update(sql, paramMap);
     }
+
+    public List<AdvertisementDTO> saveAdvertisement () {
+        //String sql = "SELECT * FROM advertisement";
+
+        String sql = "SELECT * FROM advertisement WHERE id=:dbId";
+
+        return jdbcTemplate.query(sql, new HashMap(), new AdvertisementRowMapper());
+
+    }
+
+
+
+
+
+
+
 
 }
