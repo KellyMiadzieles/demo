@@ -18,4 +18,6 @@
             <column name="email" type="text"/>
         </createTable>
     </changeSet>
+
+
 </databaseChangeLog>
