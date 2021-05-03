@@ -1,4 +1,4 @@
-package myproject;
+package ee.bcs.valiit.myproject.demo.myproject;
 
 public class AdvertisementDTO {
     private Integer id;
