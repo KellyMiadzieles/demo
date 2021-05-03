@@ -1,14 +1,14 @@
-package myproject;
+package ee.bcs.valiit.myproject.demo.myproject;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 //@RequestMapping ("api")
-public class Controller {
+public class CreateAdvertisementController {
 
     @Autowired
-    private Service service;
+    private CreateAdvertisementService service;
 
     public static void main(String[] args) {
     }
