@@ -18,6 +18,39 @@
             <column name="email" type="text"/>
         </createTable>
     </changeSet>
-
+<changeSet id="2021-05-03" author="kadri">
+    <dropTable tableName="advertisement"/>
+</changeSet>
+    <changeSet id="2021-05-03-2" author="kadri">
+        <createTable tableName="advertisement">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="title" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="price" type="numeric">
+                <constraints nullable="false"/>
+            </column>
+            <column name="category" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="location" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="username" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="phonenumber" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="text">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
 
 </databaseChangeLog>
