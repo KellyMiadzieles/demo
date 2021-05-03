@@ -3,5 +3,19 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
-
+    <changeSet id="2021-05-03" author="kelly">
+        <createTable tableName="advertisement">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="title" type="text"/>
+            <column name="description" type="text"/>
+            <column name="price" type="numeric"/>
+            <column name="category" type="text"/>
+            <column name="location" type="text"/>
+            <column name="username" type="text"/>
+            <column name="phonenumber" type="text"/>
+            <column name="email" type="text"/>
+        </createTable>
+    </changeSet>
 </databaseChangeLog>
