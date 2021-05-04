@@ -23,5 +23,5 @@ public class CreateAdvertisementController {
     public List<AdvertisementDTO> saveAdvertisement (){
         return createAdvertisementService.saveAdvertisement();
     }
-
+//uus test
 }
