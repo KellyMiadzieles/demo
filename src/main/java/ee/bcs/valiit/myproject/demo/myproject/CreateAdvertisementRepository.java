@@ -31,6 +31,7 @@ public class CreateAdvertisementRepository {
 
     public List<AdvertisementDTO> saveAdvertisement () {
         //String sql = "SELECT * FROM advertisement";
+        //uued kommentaarid
 
         String sql = "SELECT * FROM advertisement WHERE id=:dbId";
 
