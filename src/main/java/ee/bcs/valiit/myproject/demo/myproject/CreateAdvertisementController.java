@@ -21,7 +21,18 @@ public class CreateAdvertisementController {
 
     @GetMapping("/saveAdvertisement/")
     public List<AdvertisementDTO> saveAdvertisement (){
+
         return createAdvertisementService.saveAdvertisement();
     }
+
+    @GetMapping("/getAdsByLocation/{location}")
+    public List <AdvertisementDTO> getAdsByLocation(@PathVariable("location") String location){
+        return createAdvertisementService.getAdsByLocation(location);
+
+    }
+
+
+
+
 
 }
