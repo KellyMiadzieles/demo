@@ -35,9 +35,15 @@ public class CreateAdvertisementController {
         return createAdvertisementService.getAdvertisement(id);
     }
 
+
     @GetMapping ("/getAdsByPrice/{priceFrom}/{priceTo}")
     public List<AdvertisementDTO> getAdsByPrice (@PathVariable("priceFrom") Double priceFrom,
                                                  @PathVariable ("priceTo") Double priceTo){
         return createAdvertisementService.getAdsByPrice(priceFrom, priceTo);
+    }
+
+    @GetMapping("/getAdsByCategory/{category}")
+    public List <AdvertisementDTO> getAdsByCategory(@PathVariable("category") String category){
+        return createAdvertisementService.getAdsByCategory(category);
     }
 }

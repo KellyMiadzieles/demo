@@ -31,4 +31,8 @@ public class CreateAdvertisementService {
         return createAdvertisementRepository.getAdsByPrice(priceFrom, priceTo);
     }
 
+    public List<AdvertisementDTO> getAdsByCategory(String category) {
+        return createAdvertisementRepository.getAdsByCategory(category);
+
+    }
 }
