@@ -17,18 +17,18 @@ public class CreateAdvertisementService {
 
     public List<AdvertisementDTO> getAllAdvertisements() {
         return createAdvertisementRepository.getAllAdvertisements();
-
     }
 
-
-    public List <AdvertisementDTO> getAdsByLocation(String location){
+    public List<AdvertisementDTO> getAdsByLocation(String location) {
         return createAdvertisementRepository.getAdsByLocation(location);
-
     }
 
     public AdvertisementDTO getAdvertisement(int id) {
         return createAdvertisementRepository.getAdvertisement(id);
-
-
     }
+
+    public List<AdvertisementDTO> getAdsByPrice(Double priceFrom, Double priceTo) {
+        return createAdvertisementRepository.getAdsByPrice(priceFrom, priceTo);
     }
+
+}
