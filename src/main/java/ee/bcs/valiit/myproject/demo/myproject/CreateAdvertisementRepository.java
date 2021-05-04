@@ -29,12 +29,20 @@ public class CreateAdvertisementRepository {
         jdbcTemplate.update(sql, paramMap);
     }
 
+    public List <AdvertisementDTO> getAdsByLocation(String location){
+        String sql = "SELECT * FROM advertisement WHERE location=:dbLocation";
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("dbLocation", location);
+        return jdbcTemplate.query(sql, paramMap, new AdvertisementRowMapper());
+      
+      }
+
+
     public List<AdvertisementDTO> getAllAdvertisements() {
         String sql = "SELECT * FROM advertisement";
         return jdbcTemplate.query(sql, new HashMap(), new AdvertisementRowMapper());
 
     }
-
 
     public AdvertisementDTO getAdvertisement( int id) {
         String sql = "SELECT * FROM advertisement WHERE id=:dbId";

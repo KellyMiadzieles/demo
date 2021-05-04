@@ -20,8 +20,15 @@ public class CreateAdvertisementService {
 
     }
 
+
+    public List <AdvertisementDTO> getAdsByLocation(String location){
+        return createAdvertisementRepository.getAdsByLocation(location);
+
+    }
+
     public AdvertisementDTO getAdvertisement(int id) {
         return createAdvertisementRepository.getAdvertisement(id);
+
 
     }
     }
