@@ -19,20 +19,20 @@ public class CreateAdvertisementController {
         createAdvertisementService.createAdvertisement(advertisementDTO);
     }
 
-    @GetMapping("/saveAdvertisement/")
-    public List<AdvertisementDTO> saveAdvertisement (){
-
-        return createAdvertisementService.saveAdvertisement();
-    }
-
     @GetMapping("/getAdsByLocation/{location}")
     public List <AdvertisementDTO> getAdsByLocation(@PathVariable("location") String location){
         return createAdvertisementService.getAdsByLocation(location);
 
     }
 
+    @GetMapping("/getAllAdvertisements/")
+    public List<AdvertisementDTO> getAllAdvertisements(){
+        return createAdvertisementService.getAllAdvertisements();
+    }
 
-
-
+    @GetMapping("/getAdvertisement/{id}")
+    public AdvertisementDTO getAdvertisement(@PathVariable ("id") int id){
+        return createAdvertisementService.getAdvertisement(id);
+    }
 
 }

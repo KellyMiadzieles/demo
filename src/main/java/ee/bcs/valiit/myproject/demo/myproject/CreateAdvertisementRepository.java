@@ -14,8 +14,8 @@ public class CreateAdvertisementRepository {
     @Autowired
     private NamedParameterJdbcTemplate jdbcTemplate;
 
-    public void createAdvertisement(AdvertisementDTO advertisementDTO){
-        String sql="INSERT INTO advertisement (title, description, price, category, location, username, phonenumber, email)" +
+    public void createAdvertisement(AdvertisementDTO advertisementDTO) {
+        String sql = "INSERT INTO advertisement (title, description, price, category, location, username, phonenumber, email)" +
                 " VALUES (:dbTitle, :dbDescription, :dbPrice, :dbCategory, :dbLocation, :dbUsername, :dbPhoneNumber, :dbEmail)";
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("dbTitle", advertisementDTO.getTitle());
@@ -29,30 +29,27 @@ public class CreateAdvertisementRepository {
         jdbcTemplate.update(sql, paramMap);
     }
 
-    public List<AdvertisementDTO> saveAdvertisement () {
-        //String sql = "SELECT * FROM advertisement";
-        String sql = "SELECT * FROM advertisement WHERE id=:dbId";
-        return jdbcTemplate.query(sql, new HashMap(), new AdvertisementRowMapper());
-
-    }
-
     public List <AdvertisementDTO> getAdsByLocation(String location){
         String sql = "SELECT * FROM advertisement WHERE location=:dbLocation";
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("dbLocation", location);
         return jdbcTemplate.query(sql, paramMap, new AdvertisementRowMapper());
+      
+      }
 
 
-
+    public List<AdvertisementDTO> getAllAdvertisements() {
+        String sql = "SELECT * FROM advertisement";
+        return jdbcTemplate.query(sql, new HashMap(), new AdvertisementRowMapper());
 
     }
 
+    public AdvertisementDTO getAdvertisement( int id) {
+        String sql = "SELECT * FROM advertisement WHERE id=:dbId";
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("dbId", id);
+        return jdbcTemplate.queryForObject(sql, paramMap, new AdvertisementRowMapper());
 
-
-
-
-
-
-
+    }
 
 }

@@ -15,41 +15,20 @@ public class CreateAdvertisementService {
         createAdvertisementRepository.createAdvertisement(advertisementDTO);
     }
 
-    public List<AdvertisementDTO> saveAdvertisement() {
-
-        return createAdvertisementRepository.saveAdvertisement();
+    public List<AdvertisementDTO> getAllAdvertisements() {
+        return createAdvertisementRepository.getAllAdvertisements();
 
     }
+
 
     public List <AdvertisementDTO> getAdsByLocation(String location){
         return createAdvertisementRepository.getAdsByLocation(location);
 
     }
 
+    public AdvertisementDTO getAdvertisement(int id) {
+        return createAdvertisementRepository.getAdvertisement(id);
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-}
+    }
+    }
