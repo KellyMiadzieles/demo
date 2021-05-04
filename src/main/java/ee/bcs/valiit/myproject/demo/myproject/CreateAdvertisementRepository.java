@@ -48,6 +48,17 @@ public class CreateAdvertisementRepository {
         return jdbcTemplate.queryForObject(sql, paramMap, new AdvertisementRowMapper());
     }
 
+    public List<AdvertisementDTO> getAdsByPrice(Double priceFrom, Double priceTo){
+        String sql = "SELECT * FROM advertisement WHERE true ";
+        Map<String, Object> paramMap = new HashMap<>();
+        if(priceFrom != null){
+            sql += "AND :priceFrom <= price ";
+            paramMap.put("priceFrom", priceFrom);
+        }
+        if(priceTo != null) {
+            sql += "AND price <= :priceTo ";
+            paramMap.put("priceTo", priceTo);
+        }
 
     public List <AdvertisementDTO> getAdsByCategory(String category){
         String sql = "SELECT * FROM advertisement WHERE category=:dbCategory";
@@ -55,7 +66,4 @@ public class CreateAdvertisementRepository {
         paramMap.put("dbCategory", category);
         return jdbcTemplate.query(sql, paramMap, new AdvertisementRowMapper());
     }
-
-
-
 }
