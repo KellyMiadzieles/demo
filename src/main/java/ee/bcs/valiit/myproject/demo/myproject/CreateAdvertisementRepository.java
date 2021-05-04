@@ -34,14 +34,11 @@ public class CreateAdvertisementRepository {
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("dbLocation", location);
         return jdbcTemplate.query(sql, paramMap, new AdvertisementRowMapper());
-      
       }
-
 
     public List<AdvertisementDTO> getAllAdvertisements() {
         String sql = "SELECT * FROM advertisement";
         return jdbcTemplate.query(sql, new HashMap(), new AdvertisementRowMapper());
-
     }
 
     public AdvertisementDTO getAdvertisement( int id) {
@@ -49,7 +46,16 @@ public class CreateAdvertisementRepository {
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("dbId", id);
         return jdbcTemplate.queryForObject(sql, paramMap, new AdvertisementRowMapper());
-
     }
+
+
+    public List <AdvertisementDTO> getAdsByCategory(String category){
+        String sql = "SELECT * FROM advertisement WHERE category=:dbCategory";
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("dbCategory", category);
+        return jdbcTemplate.query(sql, paramMap, new AdvertisementRowMapper());
+    }
+
+
 
 }
