@@ -27,12 +27,16 @@ public class CreateAdvertisementService {
         return createAdvertisementRepository.getAdvertisement(id);
     }
 
-    public List<AdvertisementDTO> getAdsByPrice(Double priceFrom, Double priceTo) {
+   public List<AdvertisementDTO> getAdsByPrice(Double priceFrom, Double priceTo) {
         return createAdvertisementRepository.getAdsByPrice(priceFrom, priceTo);
     }
 
     public List<AdvertisementDTO> getAdsByCategory(String category) {
         return createAdvertisementRepository.getAdsByCategory(category);
 
+    }
+
+    public List<AdvertisementDTO> filterAdsByPriceCategoryLocation (String category, String location, Double priceFrom, Double priceTo){
+        return createAdvertisementRepository.filterAdsByPriceCategoryLocation(category, location, priceFrom, priceTo);
     }
 }
