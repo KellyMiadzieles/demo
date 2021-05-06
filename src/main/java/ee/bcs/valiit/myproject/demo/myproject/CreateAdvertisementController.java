@@ -20,7 +20,7 @@ public class CreateAdvertisementController {
         createAdvertisementService.createAdvertisement(advertisementDTO);
     }
 
-    @GetMapping("/getAdsByLocation/{location}")
+   @GetMapping("/getAdsByLocation/{location}")
     public List<AdvertisementDTO> getAdsByLocation(@PathVariable("location") String location) {
         return createAdvertisementService.getAdsByLocation(location);
     }
@@ -45,5 +45,12 @@ public class CreateAdvertisementController {
     @GetMapping("/getAdsByCategory/{category}")
     public List <AdvertisementDTO> getAdsByCategory(@PathVariable("category") String category){
         return createAdvertisementService.getAdsByCategory(category);
+    }
+    @GetMapping("/filterAdsByPriceCategoryLocation/{category}/{location}/{priceFrom}/{priceTo}")
+    public List<AdvertisementDTO> filterAdsByPriceCategoryLocation(@PathVariable("category") String category,
+                                                                   @PathVariable("location") String location,
+                                                                   @PathVariable("priceFrom") Double priceFrom,
+                                                                   @PathVariable("priceTo") Double priceTo) {
+        return createAdvertisementService.filterAdsByPriceCategoryLocation(category, location, priceFrom, priceTo);
     }
 }
