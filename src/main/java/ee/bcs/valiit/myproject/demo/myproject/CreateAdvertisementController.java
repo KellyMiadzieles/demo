@@ -46,11 +46,11 @@ public class CreateAdvertisementController {
     public List <AdvertisementDTO> getAdsByCategory(@PathVariable("category") String category){
         return createAdvertisementService.getAdsByCategory(category);
     }
-    @GetMapping("/filterAdsByPriceCategoryLocation/{category}/{location}/{priceFrom}/{priceTo}")
-    public List<AdvertisementDTO> filterAdsByPriceCategoryLocation(@PathVariable("category") String category,
-                                                                   @PathVariable("location") String location,
-                                                                   @PathVariable("priceFrom") Double priceFrom,
-                                                                   @PathVariable("priceTo") Double priceTo) {
+    @GetMapping("/filterAdsByPriceCategoryLocation/")
+    public List<AdvertisementDTO> filterAdsByPriceCategoryLocation(@RequestParam(value = "a", required = false) String category,
+                                                                   @RequestParam(value = "b", required = false) String location,
+                                                                   @RequestParam(value = "c", required = false) Double priceFrom,
+                                                                   @RequestParam(value = "d", required = false) Double priceTo) {
         return createAdvertisementService.filterAdsByPriceCategoryLocation(category, location, priceFrom, priceTo);
     }
 }
