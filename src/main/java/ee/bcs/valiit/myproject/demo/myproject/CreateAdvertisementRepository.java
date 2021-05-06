@@ -60,7 +60,6 @@ public class CreateAdvertisementRepository {
             paramMap.put("priceTo", priceTo);
         }
         return jdbcTemplate.query(sql, paramMap, new AdvertisementRowMapper());
-
     }
     public List <AdvertisementDTO> getAdsByCategory(String category){
         String sql = "SELECT * FROM advertisement WHERE category=:dbCategory";
