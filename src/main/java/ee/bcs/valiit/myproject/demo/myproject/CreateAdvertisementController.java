@@ -53,4 +53,11 @@ public class CreateAdvertisementController {
                                                                    @RequestParam(value = "d", required = false) Double priceTo) {
         return createAdvertisementService.filterAdsByPriceCategoryLocation(category, location, priceFrom, priceTo);
     }
+
+    @GetMapping ("/searchAdsByTitleDescription/{input}")
+    public List<AdvertisementDTO> searchAdsByTitleDescription (@PathVariable("input") String input){
+        return createAdvertisementService.searchAdsByTitleDescription(input);
+    }
+
+
 }

@@ -39,4 +39,10 @@ public class CreateAdvertisementService {
     public List<AdvertisementDTO> filterAdsByPriceCategoryLocation (String category, String location, Double priceFrom, Double priceTo){
         return createAdvertisementRepository.filterAdsByPriceCategoryLocation(category, location, priceFrom, priceTo);
     }
+
+    public List<AdvertisementDTO> searchAdsByTitleDescription (String input){
+        return createAdvertisementRepository.searchAdsByTitleDescription(input);
+    }
+
+
 }
