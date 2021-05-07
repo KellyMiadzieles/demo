@@ -3,8 +3,6 @@ package ee.bcs.valiit.myproject.demo.myproject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.HashMap;
 import java.util.List;
@@ -36,14 +34,14 @@ public class CreateAdvertisementRepository {
         return jdbcTemplate.query(sql, new HashMap(), new AdvertisementRowMapper());
     }
 
-    public AdvertisementDTO getAdvertisement( int id) {
+    public AdvertisementDTO getAdvertisement(int id) {
         String sql = "SELECT * FROM advertisement WHERE id=:dbId";
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("dbId", id);
         return jdbcTemplate.queryForObject(sql, paramMap, new AdvertisementRowMapper());
     }
 
-  public List<AdvertisementDTO> getAdsByPrice(Double priceFrom, Double priceTo) {
+    public List<AdvertisementDTO> getAdsByPrice(Double priceFrom, Double priceTo) {
         String sql = "SELECT * FROM advertisement WHERE true ";
         Map<String, Object> paramMap = new HashMap<>();
         if (priceFrom != null) {
@@ -56,20 +54,22 @@ public class CreateAdvertisementRepository {
         }
         return jdbcTemplate.query(sql, paramMap, new AdvertisementRowMapper());
     }
-    public List <AdvertisementDTO> getAdsByCategory(String category){
+
+    public List<AdvertisementDTO> getAdsByCategory(String category) {
         String sql = "SELECT * FROM advertisement WHERE category=:dbCategory";
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("dbCategory", category);
         return jdbcTemplate.query(sql, paramMap, new AdvertisementRowMapper());
     }
-    public List <AdvertisementDTO> getAdsByLocation(String location){
+
+    public List<AdvertisementDTO> getAdsByLocation(String location) {
         String sql = "SELECT * FROM advertisement WHERE location=:dbLocation";
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("dbLocation", location);
         return jdbcTemplate.query(sql, paramMap, new AdvertisementRowMapper());
     }
 
-    public List<AdvertisementDTO> filterAdsByPriceCategoryLocation (String category, String location, Double priceFrom, Double priceTo){
+    public List<AdvertisementDTO> filterAdsByPriceCategoryLocation(String category, String location, Double priceFrom, Double priceTo, String input) {
         String sql = "SELECT * FROM advertisement WHERE true ";
         Map<String, Object> paramMap = new HashMap<>();
         if (category != null && !category.isBlank()) {
@@ -88,8 +88,14 @@ public class CreateAdvertisementRepository {
             sql += "AND price <= :priceTo ";
             paramMap.put("priceTo", priceTo);
         }
+        if (input != null && !input.isBlank()) {
+            sql += "AND title like :dbTitle OR description like :dbTitle";
+            paramMap.put("dbTitle", "%" + input + "%");
+        }
         return jdbcTemplate.query(sql, paramMap, new AdvertisementRowMapper());
     }
+
+
 
     public List <AdvertisementDTO> searchAdsByTitleDescription(String input){
         String sql = "SELECT * FROM advertisement WHERE title like :dbTitle OR description like :dbTitle OR category like :dbTitle OR location like :dbTitle OR username like :dbTitle";
@@ -97,8 +103,6 @@ public class CreateAdvertisementRepository {
         paramMap.put("dbTitle", "%" + input + "%");
         return jdbcTemplate.query(sql, paramMap, new AdvertisementRowMapper());
     }
-
-
 
 
 }
