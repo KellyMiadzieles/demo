@@ -70,11 +70,11 @@ public class CreateAdvertisementRepository {
     public List<AdvertisementDTO> filterAdsByPriceCategoryLocation (String category, String location, Double priceFrom, Double priceTo){
         String sql = "SELECT * FROM advertisement WHERE true ";
         Map<String, Object> paramMap = new HashMap<>();
-        if (category != null) {
+        if (category != null && !category.isBlank()) {
             sql += "AND :dbCategory = category ";
             paramMap.put("dbCategory", category);
         }
-        if (location != null) {
+        if (location != null && !location.isBlank()) {
             sql += "AND :dbLocation = location ";
             paramMap.put("dbLocation", location);
         }
