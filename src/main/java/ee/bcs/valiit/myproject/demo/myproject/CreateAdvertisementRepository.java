@@ -95,8 +95,10 @@ public class CreateAdvertisementRepository {
         return jdbcTemplate.query(sql, paramMap, new AdvertisementRowMapper());
     }
 
-    public List<AdvertisementDTO> searchAdsByTitleDescription(String input) {
-        String sql = "SELECT * FROM advertisement WHERE title like :dbTitle OR description like :dbTitle";
+
+
+    public List <AdvertisementDTO> searchAdsByTitleDescription(String input){
+        String sql = "SELECT * FROM advertisement WHERE title like :dbTitle OR description like :dbTitle OR category like :dbTitle OR location like :dbTitle OR username like :dbTitle";
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("dbTitle", "%" + input + "%");
         return jdbcTemplate.query(sql, paramMap, new AdvertisementRowMapper());
