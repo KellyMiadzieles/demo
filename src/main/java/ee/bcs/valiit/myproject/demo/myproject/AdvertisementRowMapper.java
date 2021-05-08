@@ -13,6 +13,7 @@ public class AdvertisementRowMapper implements RowMapper <AdvertisementDTO> {
     public AdvertisementDTO mapRow(ResultSet resultSet, int i) throws SQLException {
 
         AdvertisementDTO response = new AdvertisementDTO();
+        response.setId(resultSet.getInt("id"));
         response.setTitle(resultSet.getString("title"));
         response.setDescription(resultSet.getString("description"));
         response.setPrice(resultSet.getDouble("price"));
