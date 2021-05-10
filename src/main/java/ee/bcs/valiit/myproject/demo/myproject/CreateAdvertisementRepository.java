@@ -89,7 +89,7 @@ public class CreateAdvertisementRepository {
             paramMap.put("priceTo", priceTo);
         }
         if (input != null && !input.isBlank()) {
-            sql += "AND title ilike :dbTitle OR description like :dbTitle";
+            sql += "AND title ilike :dbTitle OR description ilike :dbTitle";
             paramMap.put("dbTitle", "%" + input + "%");
         }
         return jdbcTemplate.query(sql, paramMap, new AdvertisementRowMapper());
