@@ -52,5 +52,11 @@
             </column>
         </createTable>
     </changeSet>
+    <changeSet id="10.05" author="inga">
+        <addColumn tableName="advertisement">
+            <column name="time" type="timestamp"></column>
+        </addColumn>
+    </changeSet>
+
 
 </databaseChangeLog>
