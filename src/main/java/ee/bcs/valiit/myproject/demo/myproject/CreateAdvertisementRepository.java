@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,8 +16,8 @@ public class CreateAdvertisementRepository {
     private NamedParameterJdbcTemplate jdbcTemplate;
 
     public void createAdvertisement(AdvertisementDTO advertisementDTO) {
-        String sql = "INSERT INTO advertisement (title, description, price, category, location, username, phonenumber, email)" +
-                " VALUES (:dbTitle, :dbDescription, :dbPrice, :dbCategory, :dbLocation, :dbUsername, :dbPhoneNumber, :dbEmail)";
+        String sql = "INSERT INTO advertisement (title, description, price, category, location, username, phonenumber, email, time)" +
+                " VALUES (:dbTitle, :dbDescription, :dbPrice, :dbCategory, :dbLocation, :dbUsername, :dbPhoneNumber, :dbEmail, :dbTime)";
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("dbTitle", advertisementDTO.getTitle());
         paramMap.put("dbDescription", advertisementDTO.getDescription());
@@ -26,6 +27,7 @@ public class CreateAdvertisementRepository {
         paramMap.put("dbUsername", advertisementDTO.getUsername());
         paramMap.put("dbPhoneNumber", advertisementDTO.getPhonenumber());
         paramMap.put("dbEmail", advertisementDTO.getEmail());
+        paramMap.put("dbTime", LocalDateTime.now());
         jdbcTemplate.update(sql, paramMap);
     }
 
@@ -103,6 +105,9 @@ public class CreateAdvertisementRepository {
         paramMap.put("dbTitle", "%" + input + "%");
         return jdbcTemplate.query(sql, paramMap, new AdvertisementRowMapper());
     }
+
+
+
 
 
 }

@@ -3,6 +3,8 @@ package ee.bcs.valiit.myproject.demo.myproject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
@@ -27,7 +29,7 @@ public class CreateAdvertisementService {
         return createAdvertisementRepository.getAdvertisement(id);
     }
 
-   public List<AdvertisementDTO> getAdsByPrice(Double priceFrom, Double priceTo) {
+    public List<AdvertisementDTO> getAdsByPrice(Double priceFrom, Double priceTo) {
         return createAdvertisementRepository.getAdsByPrice(priceFrom, priceTo);
     }
 
@@ -36,13 +38,15 @@ public class CreateAdvertisementService {
 
     }
 
-    public List<AdvertisementDTO> filterAdsByPriceCategoryLocation (String category, String location, Double priceFrom, Double priceTo, String input){
+    public List<AdvertisementDTO> filterAdsByPriceCategoryLocation(String category, String location, Double priceFrom, Double priceTo, String input) {
         return createAdvertisementRepository.filterAdsByPriceCategoryLocation(category, location, priceFrom, priceTo, input);
     }
 
-    public List<AdvertisementDTO> searchAdsByTitleDescription (String input){
+    public List<AdvertisementDTO> searchAdsByTitleDescription(String input) {
         return createAdvertisementRepository.searchAdsByTitleDescription(input);
     }
+
+
 
 
 }
