@@ -75,7 +75,7 @@ public class CreateAdvertisementRepository {
         return jdbcTemplate.query(sql, paramMap, new AdvertisementRowMapper());
     }
 
-    public List<AdvertisementDTO> filterAdsByPriceCategoryLocation(String category, String location, Double priceFrom, Double priceTo, String input) {
+    public List<AdvertisementDTO> filterAdsByPriceCategoryLocation(String category, String location, Double priceFrom, Double priceTo, String input, String orderByColumn, String orderByDirection) {
         String sql = "SELECT * FROM advertisement WHERE true ";
         Map<String, Object> paramMap = new HashMap<>();
         if (category != null && !category.isBlank()) {
@@ -95,12 +95,25 @@ public class CreateAdvertisementRepository {
             paramMap.put("priceTo", priceTo);
         }
         if (input != null && !input.isBlank()) {
-            sql += "AND title ilike :dbTitle OR description ilike :dbTitle";
+            sql += "AND title ilike :dbTitle OR description ilike :dbTitle ";
             paramMap.put("dbTitle", "%" + input + "%");
+        }
+        if (orderByColumn != null && orderByDirection != null
+                && !orderByColumn.isBlank() && !orderByDirection.isBlank()) {
+            validateOrderBy(orderByColumn, orderByDirection);
+            sql += "ORDER BY " + orderByColumn + " " + orderByDirection;
         }
         return jdbcTemplate.query(sql, paramMap, new AdvertisementRowMapper());
     }
 
+    private void validateOrderBy(String orderByColumn, String orderByDirection) {
+        if(!orderByDirection.equalsIgnoreCase("ASC") && !orderByDirection.equalsIgnoreCase("DESC")){
+            throw new RuntimeException("Viga");
+        }
+        if(!orderByColumn.equalsIgnoreCase("price")  && !orderByColumn.equalsIgnoreCase("time")){
+            throw new RuntimeException("Viga");
+        }
+    }
 
 
     public List <AdvertisementDTO> searchAdsByTitleDescription(String input){

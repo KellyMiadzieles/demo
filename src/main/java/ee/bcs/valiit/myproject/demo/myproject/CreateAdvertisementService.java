@@ -40,13 +40,16 @@ public class CreateAdvertisementService {
 
     }
 
-    public List<AdvertisementDTO> filterAdsByPriceCategoryLocation(String category, String location, Double priceFrom, Double priceTo, String input) {
-        return createAdvertisementRepository.filterAdsByPriceCategoryLocation(category, location, priceFrom, priceTo, input);
+    public List<AdvertisementDTO> filterAdsByPriceCategoryLocation(String category, String location, Double priceFrom, Double priceTo, String input, String orderByColumn, String orderByDirection) {
+        return createAdvertisementRepository.filterAdsByPriceCategoryLocation(category, location, priceFrom, priceTo, input, orderByColumn, orderByDirection );
     }
 
     public List<AdvertisementDTO> searchAdsByTitleDescription(String input) {
         return createAdvertisementRepository.searchAdsByTitleDescription(input);
     }
+
+
+
 
 
 
