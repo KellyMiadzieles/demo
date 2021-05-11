@@ -2,8 +2,9 @@ package ee.bcs.valiit.myproject.demo.myproject;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.time.LocalDateTime;
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -12,6 +13,7 @@ public class CreateAdvertisementController {
 
     @Autowired
     private CreateAdvertisementService createAdvertisementService;
+    private int fileMaxSize=2000000;
 
     public static void main(String[] args) {
     }
@@ -19,6 +21,14 @@ public class CreateAdvertisementController {
     @PostMapping("/createAdvertisement/")
     public void createAdvertisement(@RequestBody AdvertisementDTO advertisementDTO) {
         createAdvertisementService.createAdvertisement(advertisementDTO);
+    }
+    @PostMapping("/savePhoto/")
+    public void savePhoto (@RequestParam ("file")MultipartFile file) throws IOException {
+        if (file.getBytes().length > fileMaxSize){
+            throw new RuntimeException("File size too large");
+        }
+        System.out.println(file.getBytes().length);
+//        createAdvertisementService.savePhoto(file);
     }
 
     @GetMapping("/getAdsByLocation/{location}")
@@ -63,7 +73,4 @@ public class CreateAdvertisementController {
     public List<AdvertisementDTO> searchAdsByTitleDescription(@PathVariable("input") String input) {
         return createAdvertisementService.searchAdsByTitleDescription(input);
     }
-
-
-
 }
