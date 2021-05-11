@@ -3,6 +3,7 @@ package ee.bcs.valiit.myproject.demo.myproject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -52,8 +53,10 @@ public class CreateAdvertisementController {
                                                                    @RequestParam(value = "b", required = false) String location,
                                                                    @RequestParam(value = "c", required = false) Double priceFrom,
                                                                    @RequestParam(value = "d", required = false) Double priceTo,
-                                                                   @RequestParam(value = "e", required = false) String input) {
-        return createAdvertisementService.filterAdsByPriceCategoryLocation(category, location, priceFrom, priceTo, input);
+                                                                   @RequestParam(value = "e", required = false) String input,
+                                                                   @RequestParam(value = "f", required = false) String orderByColumn,
+                                                                   @RequestParam(value = "g", required = false) String orderByDirection)  {
+        return createAdvertisementService.filterAdsByPriceCategoryLocation(category, location, priceFrom, priceTo, input, orderByColumn, orderByDirection);
     }
 
     @GetMapping("/searchAdsByTitleDescription/{input}")
