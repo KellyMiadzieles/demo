@@ -2,9 +2,9 @@ package ee.bcs.valiit.myproject.demo.myproject;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
+import java.io.File;
 import java.util.List;
 
 @Service
@@ -15,6 +15,8 @@ public class CreateAdvertisementService {
 
     public void createAdvertisement(AdvertisementDTO advertisementDTO) {
         createAdvertisementRepository.createAdvertisement(advertisementDTO);
+    }
+    public void savePhoto(MultipartFile file){
     }
 
     public List<AdvertisementDTO> getAllAdvertisements() {

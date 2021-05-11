@@ -3,6 +3,7 @@ package ee.bcs.valiit.myproject.demo.myproject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -29,6 +30,9 @@ public class CreateAdvertisementRepository {
         paramMap.put("dbEmail", advertisementDTO.getEmail());
         paramMap.put("dbTime", LocalDateTime.now());
         jdbcTemplate.update(sql, paramMap);
+    }
+    public void savePhoto(MultipartFile file){
+
     }
 
     public List<AdvertisementDTO> getAllAdvertisements() {
@@ -105,10 +109,5 @@ public class CreateAdvertisementRepository {
         paramMap.put("dbTitle", "%" + input + "%");
         return jdbcTemplate.query(sql, paramMap, new AdvertisementRowMapper());
     }
-
-
-
-
-
 }
 
