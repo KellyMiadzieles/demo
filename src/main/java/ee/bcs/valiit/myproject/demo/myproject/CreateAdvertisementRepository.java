@@ -1,10 +1,15 @@
 package ee.bcs.valiit.myproject.demo.myproject;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.support.SqlLobValue;
+import org.springframework.jdbc.support.lob.DefaultLobHandler;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
@@ -31,8 +36,12 @@ public class CreateAdvertisementRepository {
         paramMap.put("dbTime", LocalDateTime.now());
         jdbcTemplate.update(sql, paramMap);
     }
-    public void savePhoto(MultipartFile file){
-
+    public void savePhoto(MultipartFile file) throws IOException {
+        String sql= "INSERT INTO photodatabase (photo) values (:dbPhoto)";
+        MapSqlParameterSource paramMap = new MapSqlParameterSource();
+        paramMap.addValue("dbPhoto",
+                new SqlLobValue(new ByteArrayInputStream(file.getBytes()), file.getBytes().length, new DefaultLobHandler()));
+        jdbcTemplate.update(sql, paramMap);
     }
 
     public List<AdvertisementDTO> getAllAdvertisements() {
