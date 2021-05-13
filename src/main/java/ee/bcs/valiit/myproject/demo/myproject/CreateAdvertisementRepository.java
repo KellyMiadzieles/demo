@@ -50,7 +50,7 @@ public class CreateAdvertisementRepository {
     }
 
     public AdvertisementDTO getAdvertisement(int id) {
-        String sql = "SELECT * FROM advertisement WHERE id=:dbId";
+        String sql = "SELECT * FROM advertisement a FULL OUTER JOIN photodatabase p  ON a.id=p.id WHERE a.id=:dbId";
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("dbId", id);
         return jdbcTemplate.queryForObject(sql, paramMap, new AdvertisementRowMapper());
@@ -85,7 +85,7 @@ public class CreateAdvertisementRepository {
     }
 
     public List<AdvertisementDTO> filterAdsByPriceCategoryLocation(String category, String location, Double priceFrom, Double priceTo, String input, String orderByColumn, String orderByDirection) {
-        String sql = "SELECT * FROM advertisement WHERE true ";
+        String sql = "SELECT * FROM advertisement a FULL OUTER JOIN photodatabase p  ON a.id=p.id WHERE true ";
         Map<String, Object> paramMap = new HashMap<>();
         if (category != null && !category.isBlank()) {
             sql += "AND :dbCategory = category ";
@@ -126,7 +126,7 @@ public class CreateAdvertisementRepository {
 
 
     public List <AdvertisementDTO> searchAdsByTitleDescription(String input){
-        String sql = "SELECT * FROM advertisement WHERE title ilike :dbTitle OR description ilike :dbTitle OR category ilike :dbTitle OR location ilike :dbTitle OR username ilike :dbTitle";
+        String sql = "SELECT * FROM advertisement a FULL OUTER JOIN photodatabase p  ON a.id=p.id WHERE title ilike :dbTitle OR description ilike :dbTitle OR category ilike :dbTitle OR location ilike :dbTitle OR username ilike :dbTitle";
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("dbTitle", "%" + input + "%");
         return jdbcTemplate.query(sql, paramMap, new AdvertisementRowMapper());
